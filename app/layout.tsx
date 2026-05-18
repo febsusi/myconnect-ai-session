@@ -5,7 +5,6 @@ import ErrorBoundary from '@/components/ErrorBoundary';
 
 export const metadata: Metadata = {
   title: 'MyConnect AI',
-  description: 'Manage your AI conversations with Claude',
 };
 
 export default function RootLayout({
