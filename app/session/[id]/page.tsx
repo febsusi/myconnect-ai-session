@@ -38,7 +38,6 @@ export default function SessionPage() {
     const sessionAgg = new SessionAggregate(session);
     sessionAgg.addMessage(newMessage);
     
-    // Auto-update title based on first user message
     if (session.messages.length === 0 && role === 'user') {
       const title = content.slice(0, 30) + (content.length > 30 ? '...' : '');
       sessionAgg.updateTitle(title);
