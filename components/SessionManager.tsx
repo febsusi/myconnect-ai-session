@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from 'react';
 import { Session, Message } from '@/types';
 import { getSessions, createSession, deleteSession, addMessageToSession } from '@/lib/store';
 
-// Particles Background Component
 const ParticlesBackground = () => {
   useEffect(() => {
     const createParticle = () => {
@@ -28,7 +27,6 @@ const ParticlesBackground = () => {
   return <div className="particle-container fixed inset-0 pointer-events-none overflow-hidden" />;
 };
 
-// Toast Component with Animation
 const Toast = ({ message, type, onClose }: { message: string; type: 'success' | 'error'; onClose: () => void }) => {
   useEffect(() => {
     const timer = setTimeout(onClose, 3000);
@@ -47,7 +45,6 @@ const Toast = ({ message, type, onClose }: { message: string; type: 'success' | 
   );
 };
 
-// Empty State Component
 const EmptyState = () => (
   <div className="flex flex-col items-center justify-center h-full text-center animate-float">
     <div className="w-32 h-32 mb-6 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center animate-glow">
@@ -95,7 +92,6 @@ const ChatBubble = ({ message, isUser }: { message: Message; isUser: boolean }) 
   </div>
 );
 
-// Skeleton Loader
 const SkeletonLoader = () => (
   <div className="space-y-3 p-4">
     {[1, 2, 3].map(i => (
@@ -263,12 +259,10 @@ export default function SessionManager() {
     <div className="relative flex h-screen overflow-hidden bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800">
       <ParticlesBackground />
       
-      {/* Animated Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 animate-gradient pointer-events-none" />
       
       {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
 
-      {/* Dark Mode Toggle */}
       <button
         onClick={toggleDarkMode}
         className="fixed top-5 right-5 z-50 p-3 rounded-2xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-110"
@@ -276,7 +270,6 @@ export default function SessionManager() {
         <span className="text-xl">{isDark ? '☀️' : '🌙'}</span>
       </button>
 
-      {/* Sidebar */}
       <div className={`relative z-10 ${sidebarCollapsed ? 'w-20' : 'w-80'} bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl border-r border-gray-200/50 dark:border-gray-700/50 flex flex-col transition-all duration-500 shadow-2xl`}>
         <div className="p-5 border-b border-gray-200/50 dark:border-gray-700/50 flex items-center justify-between">
           {!sidebarCollapsed && (
@@ -357,11 +350,9 @@ export default function SessionManager() {
         )}
       </div>
 
-      {/* Main Chat Area */}
       <div className="flex-1 flex flex-col relative z-0">
         {selectedSession ? (
           <>
-            {/* Header */}
             <div className="bg-white/50 dark:bg-gray-900/50 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-700/50 p-5">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center shadow-lg">
@@ -378,7 +369,6 @@ export default function SessionManager() {
               </div>
             </div>
 
-            {/* Messages */}
             <div className="flex-1 overflow-y-auto p-6 space-y-5">
               {selectedSession.messages.map((message: Message) => (
                 <ChatBubble 
@@ -388,7 +378,6 @@ export default function SessionManager() {
                 />
               ))}
               
-              {/* Streaming message */}
               {isLoading && (
                 <div className="flex gap-3 animate-message-pop">
                   <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center shadow-lg relative">
@@ -417,7 +406,6 @@ export default function SessionManager() {
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Input Area */}
             <div className="bg-white/50 dark:bg-gray-900/50 backdrop-blur-md border-t border-gray-200/50 dark:border-gray-700/50 p-5">
               <div className="flex gap-3 items-end">
                 <div className="flex-1 relative">
