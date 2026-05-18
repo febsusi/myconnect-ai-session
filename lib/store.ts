@@ -1,7 +1,6 @@
 import { Session, Message } from '@/types';
 import { v4 as uuidv4 } from 'uuid';
 
-// Local storage operations
 const loadSessions = (): Session[] => {
   if (typeof window === 'undefined') return [];
   const raw = localStorage.getItem('ai_sessions');
@@ -20,7 +19,6 @@ const saveSessions = (sessions: Session[]) => {
   localStorage.setItem('ai_sessions', JSON.stringify(sessions));
 };
 
-// CRUD operations
 export const getSessions = (): Session[] => loadSessions();
 
 export const getSession = (id: string): Session | null => {
@@ -55,7 +53,6 @@ export const addMessageToSession = (sessionId: string, content: string, role: 'u
   sessions[index].messages.push(newMessage);
   sessions[index].updatedAt = new Date();
   
-  // Auto-update title from first user message
   if (sessions[index].messages.length === 1 && role === 'user') {
     sessions[index].title = content.slice(0, 30) + (content.length > 30 ? '...' : '');
   }
