@@ -24,10 +24,8 @@ export default function SessionDetail({ session, onAddMessage }: SessionDetailPr
   }, [session.messages, streamingContent]);
 
   const handleSend = async (userMessage: string) => {
-    // Add user message
     onAddMessage(userMessage, 'user');
 
-    // Prepare conversation history
     const conversationHistory = [
       ...session.messages.map(m => ({
         role: m.role as 'user' | 'assistant',
@@ -41,7 +39,6 @@ export default function SessionDetail({ session, onAddMessage }: SessionDetailPr
       assistantResponse += token;
     });
 
-    // Add assistant message when complete
     if (assistantResponse) {
       onAddMessage(assistantResponse, 'assistant');
     }
