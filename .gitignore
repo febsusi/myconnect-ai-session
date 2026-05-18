@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+.npm/
+.next/
+out/
+
+# Build files
+dist/
+build/
+
+# Environment
+.env.local
+.env*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Debug
+*.tsbuildinfo
